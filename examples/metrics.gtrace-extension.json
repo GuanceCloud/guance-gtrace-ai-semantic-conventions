@@ -1,0 +1,33 @@
+{
+  "metrics": [
+    {
+      "name": "gen_ai.agent.operation.count",
+      "type": "counter",
+      "unit": "1",
+      "value": 1,
+      "attributes": {
+        "agent_runtime": "codex",
+        "operation_name": "tool",
+        "gen_ai.operation.name": "execute_tool",
+        "gen_ai.tool.name": "exec_command",
+        "skill.name": "plugin-creator",
+        "outcome": "completed",
+        "tool_result_status": "completed"
+      }
+    },
+    {
+      "name": "gen_ai.runtime.tool.call.count",
+      "type": "counter",
+      "unit": "1",
+      "value": 1,
+      "attributes": {
+        "agent_runtime": "hermes",
+        "gen_ai.conversation.id": "session-456",
+        "gen_ai.tool.name": "skill_view",
+        "skill.name": "review",
+        "outcome": "completed"
+      }
+    }
+  ]
+}
+

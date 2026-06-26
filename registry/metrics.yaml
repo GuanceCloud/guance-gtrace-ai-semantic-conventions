@@ -1,0 +1,101 @@
+version: 0.1.0
+status: draft
+metrics:
+  - name: gen_ai.client.operation.duration
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name]
+    recommended_tags: [gen_ai.provider.name, gen_ai.request.model, gen_ai.response.model, gen_ai.conversation.id, error.type, server.address, server.port]
+    description: GenAI client operation duration.
+  - name: gen_ai.client.token.usage
+    namespace: otel
+    type: histogram
+    unit: "{token}"
+    required_tags: [gen_ai.operation.name, gen_ai.provider.name, gen_ai.token.type]
+    recommended_tags: [gen_ai.request.model, gen_ai.response.model, gen_ai.conversation.id, server.address, server.port]
+    allowed_token_types: [input, output]
+    description: Number of input and output tokens used.
+  - name: gen_ai.workflow.duration
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: []
+    recommended_tags: [gen_ai.operation.name, gen_ai.conversation.id, error.type]
+    description: GenAI workflow duration.
+  - name: gen_ai.server.request.duration
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name, gen_ai.provider.name]
+    recommended_tags: [gen_ai.request.model, gen_ai.response.model, error.type, server.address, server.port]
+    description: GenAI model server request duration.
+  - name: gen_ai.server.time_to_first_token
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name, gen_ai.provider.name]
+    recommended_tags: [gen_ai.request.model, gen_ai.response.model, server.address, server.port]
+    description: Time to first token observed on the GenAI model server side.
+  - name: gen_ai.server.time_per_output_token
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name, gen_ai.provider.name]
+    recommended_tags: [gen_ai.request.model, gen_ai.response.model, server.address, server.port]
+    description: Time per output token observed on the GenAI model server side.
+  - name: gen_ai.invoke_agent.duration
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name]
+    recommended_tags: [gen_ai.agent.name, gen_ai.conversation.id, gen_ai.provider.name, error.type]
+    description: GenAI agent invocation duration.
+  - name: gen_ai.execute_tool.duration
+    namespace: otel
+    type: histogram
+    unit: s
+    required_tags: [gen_ai.operation.name, gen_ai.tool.name]
+    recommended_tags: [gen_ai.agent.name, gen_ai.tool.type, error.type]
+    description: GenAI tool execution duration.
+  - name: gen_ai.agent.operation.count
+    namespace: gtrace
+    type: counter
+    unit: "1"
+    required_tags: [agent_runtime, operation_name, outcome]
+    recommended_tags: [gen_ai.operation.name, gen_ai.provider.name, gen_ai.request.model, gen_ai.response.model, gen_ai.tool.name, skill.name]
+    description: GTrace extension for agent-side operation count.
+  - name: gen_ai.agent.operation.duration
+    namespace: gtrace
+    type: histogram
+    unit: s
+    legacy_units: [ms]
+    required_tags: [agent_runtime, operation_name, outcome]
+    recommended_tags: [gen_ai.operation.name, gen_ai.provider.name, gen_ai.request.model, gen_ai.response.model, gen_ai.tool.name, skill.name]
+    description: GTrace extension for agent-side operation duration.
+  - name: gen_ai.agent.request.count
+    namespace: gtrace
+    type: counter
+    unit: "1"
+    required_tags: [agent_runtime, outcome]
+    recommended_tags: [gen_ai.conversation.id, gen_ai.provider.name, gen_ai.request.model, request_type]
+    description: GTrace extension for agent request count.
+  - name: gen_ai.agent.request.duration
+    namespace: gtrace
+    type: histogram
+    unit: s
+    legacy_units: [ms]
+    required_tags: [agent_runtime, outcome]
+    recommended_tags: [gen_ai.conversation.id, gen_ai.provider.name, gen_ai.request.model, request_type]
+    description: GTrace extension for agent request duration.
+  - name: gen_ai.runtime.tool.call.count
+    namespace: gtrace
+    type: counter
+    unit: "1"
+    required_tags: [agent_runtime, gen_ai.tool.name, outcome]
+    recommended_tags: [gen_ai.conversation.id, skill.name, tool_result_status]
+    description: GTrace extension for observed tool calls.
+deprecated:
+  token_types: [total, cache_read, cache_total, cache_creation, reasoning]
+  metrics:
+    - gen_ai.agent.token.usage for model client usage

@@ -1,0 +1,46 @@
+{
+  "metrics": [
+    {
+      "name": "gen_ai.client.operation.duration",
+      "type": "histogram",
+      "unit": "s",
+      "value": 1.24,
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-5",
+        "gen_ai.response.model": "gpt-5",
+        "gen_ai.conversation.id": "session-123"
+      }
+    },
+    {
+      "name": "gen_ai.client.token.usage",
+      "type": "histogram",
+      "unit": "{token}",
+      "value": 1200,
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-5",
+        "gen_ai.response.model": "gpt-5",
+        "gen_ai.conversation.id": "session-123",
+        "gen_ai.token.type": "input"
+      }
+    },
+    {
+      "name": "gen_ai.client.token.usage",
+      "type": "histogram",
+      "unit": "{token}",
+      "value": 350,
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "openai",
+        "gen_ai.request.model": "gpt-5",
+        "gen_ai.response.model": "gpt-5",
+        "gen_ai.conversation.id": "session-123",
+        "gen_ai.token.type": "output"
+      }
+    }
+  ]
+}
+

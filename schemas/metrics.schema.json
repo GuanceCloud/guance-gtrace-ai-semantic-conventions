@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GuanceCloud/gtrace-ai-semantic-conventions/schemas/metrics.schema.json",
+  "title": "GTrace AI Metric Example",
+  "type": "object",
+  "required": ["metrics"],
+  "properties": {
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "unit", "attributes"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["counter", "histogram", "gauge"] },
+          "unit": { "type": "string" },
+          "value": { "type": "number" },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "gen_ai.token.type": {
+                "type": "string",
+                "enum": ["input", "output"]
+              }
+            },
+            "not": {
+              "anyOf": [
+                {
+                  "required": ["gen_ai.token.type"],
+                  "properties": {
+                    "gen_ai.token.type": {
+                      "enum": ["total", "cache_read", "cache_total", "cache_creation", "reasoning"]
+                    }
+                  }
+                },
+                { "required": ["gen_ai.skill1.name"] }
+              ]
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
