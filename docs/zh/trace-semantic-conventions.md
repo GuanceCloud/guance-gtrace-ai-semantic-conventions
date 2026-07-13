@@ -70,12 +70,12 @@ Skill 识别规则：
 
 ### 通用 tag
 
+稳定的 Agent 身份与部署维度应优先放在 Resource Attributes 中，不建议在每个 span 上重复展开同一语义。
+
 | 字段 | 含义 | 典型 span |
 | --- | --- | --- |
 | `gen_ai.conversation.id` | 会话 ID | all |
 | `session_id` | 兼容字段，值同 `gen_ai.conversation.id` | all |
-| `gen_ai.agent.name` | Agent 名称 | all |
-| `gen_ai.agent.version` | Agent 版本 | all |
 | `gen_ai.operation.name` | 操作名 | `invoke_agent`、`llm`、`skill:*`、`tool:*` |
 | `status` | 业务状态，通常为 `ok` 或 `error` | all |
 | `error.type` | OpenTelemetry 错误类型 | `invoke_agent`、`tool:*` |

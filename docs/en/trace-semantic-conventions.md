@@ -67,12 +67,12 @@ Skill detection rules:
 
 ### Common tags
 
+Stable agent identity and deployment dimensions should live in Resource Attributes whenever possible instead of being repeated on every span.
+
 | Field | Meaning | Typical spans |
 | --- | --- | --- |
 | `gen_ai.conversation.id` | conversation ID | all |
 | `session_id` | compatibility alias of `gen_ai.conversation.id` | all |
-| `gen_ai.agent.name` | agent name | all |
-| `gen_ai.agent.version` | agent version | all |
 | `gen_ai.operation.name` | operation name | `invoke_agent`, `llm`, `skill:*`, `tool:*` |
 | `status` | span-level business status, usually `ok` or `error` | all |
 | `error.type` | OpenTelemetry error type | `invoke_agent`, `tool:*` |
